@@ -19,5 +19,8 @@ function traj = TrajectoryPlanner_generateTrajectory(x, y, theta,vx, vy, vtheta,
     end
     dt = sim_time_ / num_steps;     %两步间时间间隔
     time = 0.0;                     %轨迹第一个点的时间
-    traj=[];
+    %创建一个轨迹（初始化）
+    traj.x=[]; traj.y=[]; traj.th=[];
+    traj.xv_ = vx_samp; traj.yv_ = vy_samp; traj.thetav_ = vtheta_samp;
+    traj.cost_ = -1.0;
 end
