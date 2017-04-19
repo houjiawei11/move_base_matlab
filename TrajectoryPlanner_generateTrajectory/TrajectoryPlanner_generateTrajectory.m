@@ -7,19 +7,17 @@ function [ traj, num_steps ] = TrajectoryPlanner_generateTrajectory(x, y, theta,
 % impossible_cost：最大允许cost
 % 测试：tc=TrajectoryPlanner_generateTrajectory(4.5, 4.5, pi*0.5, 0, 0, 0, 4, 0, 0, 4, 0, 0, 100);
 %% 全局变量设置（参数设置）：
-    sim_time_ = 0.1;    %采样周期
-    sim_granularity_ = 0.05; angular_sim_granularity_ = pi/180.0;   %仿真点间距离
-    heading_scoring_=0;
+global g;
 %% 初始化
     x_i = x; y_i = y; theta_i = theta;          %轨迹第一个点的位置
     vx_i = vx; vy_i = vy; vtheta_i = vtheta;    %轨迹第一个点的速度
     vmag = sqrt(vx_samp^2 + vy_samp^2);         %轨迹第一个点的线速度
-    if ~heading_scoring_
-        num_steps = floor(max((vmag * sim_time_) / sim_granularity_, abs(vtheta_samp) / angular_sim_granularity_) + 0.5);
+    if ~ g.heading_scoring_
+        num_steps = floor(max((vmag * g.sim_time_) / g.sim_granularity_, abs(vtheta_samp) / g.angular_sim_granularity_) + 0.5);
     else
-        num_steps = floor(sim_time_ / sim_granularity_ + 0.5);
+        num_steps = floor(g.sim_time_ / g.sim_granularity_ + 0.5);
     end
-    dt = sim_time_ / num_steps;     %两步间时间间隔
+    dt = g.sim_time_ / num_steps;     %两步间时间间隔
     time = 0.0;                     %轨迹第一个点的时间
     %创建一个轨迹（初始化）
     traj.x=[]; traj.y=[]; traj.th=[];
