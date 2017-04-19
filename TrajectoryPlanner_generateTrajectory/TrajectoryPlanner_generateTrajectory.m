@@ -12,11 +12,12 @@ global g;
     x_i = x; y_i = y; theta_i = theta;          %轨迹第一个点的位置
     vx_i = vx; vy_i = vy; vtheta_i = vtheta;    %轨迹第一个点的速度
     vmag = sqrt(vx_samp^2 + vy_samp^2);         %轨迹第一个点的线速度
-    if ~ g.heading_scoring_
-        num_steps = floor(max((vmag * g.sim_time_) / g.sim_granularity_, abs(vtheta_samp) / g.angular_sim_granularity_) + 0.5);
-    else
-        num_steps = floor(g.sim_time_ / g.sim_granularity_ + 0.5);
-    end
+%     if ~ g.heading_scoring_
+%         num_steps = floor(max((vmag * g.sim_time_) / g.sim_granularity_, abs(vtheta_samp) / g.angular_sim_granularity_) + 0.5);
+%     else
+%         num_steps = floor(g.sim_time_ / g.sim_granularity_ + 0.5);
+%     end
+    num_steps = floor(g.sim_time_ / g.sim_granularity_ + 0.5)
     dt = g.sim_time_ / num_steps;     %两步间时间间隔
     time = 0.0;                     %轨迹第一个点的时间
     %创建一个轨迹（初始化）
