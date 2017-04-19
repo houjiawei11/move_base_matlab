@@ -1,14 +1,15 @@
-function traj = TrajectoryPlanner_generateTrajectory(x, y, theta,vx, vy, vtheta,vx_samp, vy_samp, vtheta_samp,acc_x, acc_y, acc_theta, impossible_cost)   
+function [ traj, num_steps ] = TrajectoryPlanner_generateTrajectory(x, y, theta,vx, vy, vtheta,vx_samp, vy_samp, vtheta_samp,acc_x, acc_y, acc_theta, impossible_cost)   
 %% 参数列表：
 % x,y,theta: 机器人当前位姿
 % vx, vy, vtheta：机器人当前线速度和角速度
 % vx_samp: The x / y / theta velocity used to seed the trajectory
 % acc_x, acc_y, acc_theta: x加速度,y加速度,theta加速度
 % impossible_cost：最大允许cost
+% 测试：tc=TrajectoryPlanner_generateTrajectory(4.5, 4.5, pi*0.5, 0, 0, 0, 4, 0, 0, 4, 0, 0, 100);
 %% 全局变量设置（参数设置）：
     sim_time_ = 0.1;    %采样周期
     sim_granularity_ = 0.05; angular_sim_granularity_ = pi/180.0;   %仿真点间距离
-    heading_scoring_=False;
+    heading_scoring_=0;
 %% 初始化
     x_i = x; y_i = y; theta_i = theta;          %轨迹第一个点的位置
     vx_i = vx; vy_i = vy; vtheta_i = vtheta;    %轨迹第一个点的速度
@@ -54,4 +55,7 @@ function traj = TrajectoryPlanner_generateTrajectory(x, y, theta,vx, vy, vtheta,
     end
 %% 计算轨迹cost
     %pass
+%     traj.x
+%     traj.y
+%     traj.th
 end
