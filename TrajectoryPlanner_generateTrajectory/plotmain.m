@@ -8,13 +8,13 @@ g.final_goal_x_=10.0; g.final_goal_y_=10.0; g.final_goal_position_valid_=true;
 g.vx_samples_=3; g.vtheta_samples_=20;  %要采样的线速度/角速度数量 
 g.max_vel_x_=1.0; g.min_vel_x_=0.0;
 g.max_vel_th_=0.1; g.min_vel_th_=0.0;
-g.final_goal_position_valid_=true; g.final_goal_x_=11.0; g.final_goal_y_=11.0; 
-g.dwa_=false;
+g.final_goal_position_valid_=true; g.final_goal_x_=11.0; g.final_goal_y_=11.0; %是否设定目标点
+g.dwa_=false;   %用何种方法产生轨迹：dwa/trajectory rollout
 % 设置一个轨迹traj_one用于初始化轨迹
 g.traj_one.x=[]; g.traj_one.y=[]; g.traj_one.th=[];
 g.traj_one.xv_ = g.min_vel_x_; g.traj_one.yv_ = 0; g.traj_one.thetav_ = g.min_vel_th_;
 g.traj_one.cost_ = -1.0;
-
+g.escaping_=false;
 %% 创建轨迹
 
 %[tc, num_steps]=TrajectoryPlanner_generateTrajectory(4.5, 4.5, 3.14*0.5, 0.0, 0, 0.04, 0.4, 0, 0.1, 0.4, 0, 0.3, 100);
